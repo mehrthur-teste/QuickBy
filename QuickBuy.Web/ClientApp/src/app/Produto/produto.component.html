@@ -1,0 +1,75 @@
+<h1 class="h4 titulo">Cadastro de Produto</h1>
+<label for="inputNome" class="sr-only">Nome</label>
+<input type="text" id="inputNome"
+       name="nomeProduto"
+       placeholder="Nome do produto"
+       class="form-control mb-2 col-md-4"
+       [(ngModel)]="produto.nome"
+       #nome="ngModel"
+       [ngClass]="{'is-invalid':nome.invalid && (nome.dirty || nome.touched),'is-valid':nome.valid && (nome.dirty || nome.touched)}"
+       required />
+<div class="invalid-feedback mb-2" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+  <div *ngIf="nome.errors.required">
+    Nome do produto deve ser preenchido obrigatóriamente
+  </div>
+</div>
+
+
+
+
+
+
+<label for="inputDescricao" class="sr-only">Descrição</label>
+<input type="text" id="inputDescricao"
+       name="descricaoProduto"
+       placeholder="Descrição do produto"
+       class="form-control mb-2 col-md-4"
+       [(ngModel)]="produto.descricao"
+       #descricao="ngModel"
+       [ngClass]="{'is-invalid':descricao.invalid && (descricao.dirty || descricao.touched),'is-valid':descricao.valid && (descricao.dirty || descricao.touched)}"
+       required
+       minlength="50"/>
+<div class="invalid-feedback mb-2" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
+  <div *ngIf="descricao.errors.required">
+    Descricao deve ser preenchida obrigatóriamente
+  </div>
+  <div *ngIf="descricao.errors.minlength">
+    Campo deve ter mno mínimo 50 caracteres
+  </div>
+</div>
+
+
+
+<label for="inputPreco" class="sr-only">Preço</label>
+<input type="number" id="inputPreco"
+       name="descricaoPreco"
+       placeholder="Preço"
+       class="form-control mb-2 col-md-2"
+       [(ngModel)]="produto.preco"
+       #Preco="ngModel"
+       [ngClass]="{'is-invalid':Preco.invalid && (Preco.dirty || Preco.touched),'is-valid':Preco.valid && (Preco.dirty || Preco.touched)}"
+       required />
+<div class="invalid-feedback mb-2" *ngIf="Preco.invalid && (Preco.dirty || Preco.touched)">
+  <div *ngIf="Preco.errors.required">
+    Preço deve ser preenchido obrigatóriamente
+  </div>
+</div>
+
+<div class="input-group mb-2">
+  <div class="custom-file col-md-4">
+    <input type="file" class="custom-file-input" id="inputFile"  (change)="inputChange($event.target.files)"/>
+    <label for="inputFile" class="custom-file-label">Escolha uma foto</label>
+
+  </div>
+</div>
+<button class="btn btn-primary" (click)="cadastrar()" [disabled]="ativar_spinner">
+  <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner">
+
+  </span>
+  Cadastrar
+</button>
+
+<div class="alert alert-danger col-md-4" *ngIf="mensagem">
+  {{mensagem}}
+</div>
+
